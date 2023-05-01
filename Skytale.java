@@ -1,8 +1,8 @@
 class Skytale {
     public static void main (String [] args) {
         /*
-        String[] array = new String[10]; // Array mit 10 Positionen. Vorsicht: das erste Element hat den Index 0!
-        String[][] zweidimensional = new String[5][10]; //5 * 10 Array. Damit lassen sich Matrizen, Tabellen, ... darstellen. Sowas könntet ihr gebrauchen.
+        String[] array = new String[10];
+        String[][] zweidimensional = new String[5][10];
 
         //füllen von Arrays:
         array[0] = "bla";
