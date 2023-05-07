@@ -67,6 +67,41 @@ class Caesarcode {
         System.out.println("Klartext: "+entschluesselter_text);
     }
 
+    public static void bruteforce(String caesartext){
+        for (int deschluessel=0; deschluessel<27; deschluessel++) {
+            String entschluesselter_text = "";
+            for(int stelle=0; stelle<caesartext.length(); stelle++) {
+
+                char character = caesartext.charAt(stelle);
+                int ascii_wert = (int) character;
+                boolean verify = false;
+
+                if (ascii_wert >= (65+deschluessel) && ascii_wert <= 90) {
+                    entschluesselter_text += String.valueOf((char) (ascii_wert-deschluessel));
+                    verify = true;
+                }
+                if (ascii_wert >= (97+deschluessel) && ascii_wert <= 122) {
+                    entschluesselter_text += String.valueOf((char) (ascii_wert-deschluessel));
+                    verify = true;
+                }
+                else {
+                    if (ascii_wert >= 65 && ascii_wert <= (65+deschluessel)) {
+                        entschluesselter_text += String.valueOf((char) (ascii_wert-deschluessel+26));
+                        verify = true;
+                    }
+                    if (ascii_wert >= 97 && ascii_wert <= (97+deschluessel)) {
+                        entschluesselter_text += String.valueOf((char) (ascii_wert-deschluessel+26));
+                        verify = true;
+                    }
+                }
+                if (verify == false) { // Falls das Zeichen kein Standard-Buchstabe ist
+                    entschluesselter_text += String.valueOf((char) ascii_wert);
+                }
+            }
+            System.out.println("Klartext für De-Schlüssel "+deschluessel+": "+entschluesselter_text);
+        }
+    }
+
     public static void main (String [] args) {
         System.out.print("Bitte den zu verschlüsselnden Text (ohne Leerzeichen!!!) eingeben: ");
         Scanner s = new Scanner(System.in);
@@ -86,5 +121,9 @@ class Caesarcode {
         int deschluessel = s.nextInt();
         s.close();
         entschluesseln(deschluessel, geheimtext);
+
+        String caesartext = "bfkdxkwklojxiboabrqpzeboqbuq"; // In diesem Fall ist De-Schlüssel 23 richtig, siehe Ausgabe
+        System.out.println("Nun folgt die Entschlüsselung des Cäsartextes "+caesartext);
+        bruteforce(caesartext);
     }
 }
