@@ -14,10 +14,12 @@ class Enigma {
 
     public static int buchstabe_suchen(String buchstabe, String walze) {
         for(int stelle=0; stelle<walze.length(); stelle++) {
-            if (String.valueOf(walze.charAt(stelle)) == buchstabe) {
+            //System.out.println(String.valueOf(walze.charAt(stelle)));
+            if (String.valueOf(walze.charAt(stelle)).equals(buchstabe)) {
                 return stelle;
             }
         }
+        return 0;
     }
 
     public static String steckbrett_suchen(String buchstabe) {
@@ -27,12 +29,12 @@ class Enigma {
         for(int stelle=0; stelle<2; stelle++) {
             for(int sublist=0; sublist<steckerbrett.length; sublist++) {
                 if (steckerbrett[sublist][stelle] == buchstabe) {
-                    neuer_buchstabe = steckerbrett[sublist][1-stelle];
+                    neuer_buchstabe += steckerbrett[sublist][1-stelle];
                     return neuer_buchstabe;
                 }
             }
         } 
-        
+        return buchstabe;
     }
     
 
@@ -53,12 +55,24 @@ class Enigma {
         String text = s.next();
         s.close();
 
-        System.out.println(steckbrett_suchen("A"));
+        // System.out.println(steckbrett_suchen("O"));
+        // System.out.println(walze_verschieben(1, alphabet));
+        // System.out.println(buchstabe_suchen("C", alphabet));
 
-        /*for(stelle=0; stelle<text.length(); stelle++) {
+        for(int stelle=0; stelle<text.length(); stelle++) {
+            String alphabet_verschoben = walze_verschieben(1, alphabet);
+            String anfangs_buchstabe = steckbrett_suchen(String.valueOf(text.charAt(stelle)));
+            int abstand_buchstaben = anfangs_buchstabe.charAt(0) - 'A';
+            String neuer_buchstabe = String.valueOf(walze3.charAt(abstand_buchstaben));
+            String buchstabe_alphabet_verschoben = String.valueOf(walze2.charAt(buchstabe_suchen(neuer_buchstabe, alphabet_verschoben)));
+            //System.out.println(buchstabe_alphabet_verschoben);
+            int stelle_neuer_buchstabe = buchstabe_suchen(buchstabe_alphabet_verschoben, alphabet);
+            String buchstabe_walze2 = String.valueOf(walze1.charAt(stelle_neuer_buchstabe));
 
-        } */
 
+
+
+        }
     }
 
 }
