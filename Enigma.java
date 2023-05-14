@@ -67,7 +67,7 @@ class Enigma {
             String buchstabe_alphabet_verschoben = String.valueOf(walze2.charAt(buchstabe_suchen(neuer_buchstabe, alphabet_verschoben)));
             //System.out.println(buchstabe_alphabet_verschoben);
             int stelle_neuer_buchstabe = buchstabe_suchen(buchstabe_alphabet_verschoben, alphabet);
-            String buchstabe_walze1 = String.valueOf(walze1.charAt(stelle_neuer_buchstabe));
+            String buchstabe_walze2 = String.valueOf(walze1.charAt(stelle_neuer_buchstabe));
 
 
 
